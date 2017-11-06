@@ -10,8 +10,6 @@
     {
         die("Connect failed: ".mysqli_connect_errno()." : ". mysqli_connect_error());
     }
-
-    //registrar Administrador
     $nombre = $_POST['nombreing'];
     $apellido = $_POST['apellidoing'];
     $email = $_POST['email'];

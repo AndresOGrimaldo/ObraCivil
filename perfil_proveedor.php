@@ -1,7 +1,15 @@
+<?php
+  session_start();
+  if(!$_SESSION)
+  {
+    header('location:index.php');
+  }
+?>
+
 <html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Analisis y diseño</title>
+        <title>Inicio de Proveedor - Analisis y diseño</title>
         <meta name="description" content="Build your landing page on the fly with wow builder">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
@@ -51,48 +59,62 @@
                                 <span class="icon-bar"></span>
                             </button>
 
-                            <a href="index.php" class=""><h3 class="text-white" style="margin-top:20px;">SIGAOC</h3></a>
-                            
+                         <a href="perfil_ing.php" class=""><h3 class="text-white" style="margin-top:20px;">SIGAOC - Proveedor</h3></a>
                         </div>  <!--end navbar-header -->
 
                         <div class="collapse navbar-collapse" id="navbar-collapse">
 
                             <ul class="nav navbar-nav navbar-right">
                                    <li><a href="#home">Inicio</a></li>
-                                <!-- <li><a href="#features" data-toggle="modal" data-target="#myModal">Ingresar</a></li> -->
-                                <li class="ingresar-display">
-                                    <a class=".perfil"  href="#" style="">Ingresar
-                                    <i class="caret"></i>
-                                    </a>
-                                    <ul class="submenu-hijo3" style="display:none;">
-                                    <li><a href=""data-toggle="modal" data-target="#myModal">Gestor de Obras</a></li>
-                                    <li><a href=""data-toggle="modal" data-target="#ModalLoginProveedor">Proveedor</a></li>
-                                    </ul>
-                                </li>
-                                <!-- <li><a href="" data-toggle="modal" data-target="#myModalRegistro">Regístrate</a></li> -->
-                                <li class="registro-display">
-                                    <a class=".perfil2"  href="#" style="">Regístrate
+                                   <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li>
+                            
+                                    <li class="registro-display">
+                                    <a class=".perfil2"  href="#" style="">Registros!
                                     <i class="caret"></i>
                                     </a>
                                     <ul class="submenu-hijo2" style="display:none;">
-                                    <li><a href=""data-toggle="modal" data-target="#myModalRegistro">Gestor de Obras</a></li>
-                                    <li><a href=""data-toggle="modal" data-target="#myModalRegistroProveedorAdmin">Proveedor</a></li>
+                                    <li><a href="" data-toggle="modal" data-id="<?php echo $_SESSION['id_proveedor'];?>" data-target="#modalSuministro">Agregar Suministro</a></li>
+                                    <!-- <li><a href="" data-toggle="modal" data-target="#registrarProveedorModal">Registrar Proveedor</a></li> -->
+                                    <!-- <li><a href="" data-toggle="modal"data-target="#registrarEmpleado">Registrar Empleado</a></li> -->
                                     </ul>
-                                </li>
+                                    </li>
+                            
+                                <li class="nombre-perfil">
+                                <a class=".perfil"  href="#" style=""><?php echo $_SESSION['nombre']; ?>
+                                <i class="caret"></i>
+                                </a>
                                 
-                                <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li>
-                            </ul>
+                                <ul class="submenu-hijo" style="display:none;">
+                               <!--   --><li><a href="gestion/editar_perfil.php" data-toggle="modal" data-target="">Editar Perfil</a></li>
+                                <li><a href="gestion_proveedor/gestion_suministros.php">Gestionar Suministros</a></li>
+                                <!-- <li><a href="gestion_proveedor/gestion_proveedor.php">Gestionar Proveedor</a></li> -->
+                                <!-- <li><a href="">Gestionar empleados</a></li> -->
+                                <li><a href="desconectar.php">Salir</a></li>
+                                </ul>
+                            </li>
+                                </ul>
                         </div>  <!--end collapse -->
                     </div>  <!--end container -->
                 </nav>
             </header><!--/-->
+
+            <?php include('obras/obras_admin.php'); ?>
+            <?php include('modal/registrar_obra.php'); ?>
+            <?php include('modal/registrar_proveedor.php'); ?>
+            <?php include('modal/registrar_empleado.php'); ?>
+            <?php include('modal/modal_contactanos.php'); ?>
+            <?php include('modal/modal_suministro.php') ;?>
 
 
             <!--home section-->
 
 
             <!-- if you like to use surface. change class="home" to class="surface"-->
-            <section id="home" class="home">
+            <section id="home" class="home" style="background: url(images/planos.jpg) no-repeat center top fixed;
+            -moz-background-size:cover;
+            -moz-background-size:cover;
+            -webkit-background-size:cover;
+            -o-background-size:cover;">
 
                 <div class="overlay-startup">
 
@@ -101,8 +123,8 @@
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="home-intro-subscribe">
                                     <!--Header text -->
-                                    <h1>Manejo de obras de construccion</h1>
-                                    <h3>Registra tus obras para poder tener un control sobre ellas, así no perderas la informacion nunca</h3>
+                                    <h1>Bienvenido Proveedor!</h1>
+                                    <h3>Con nuestro software podras mantener tus obras ordenadas, genear reportes con ellas para tener tu informacion a la mano</h3>
                                 </div>
 
                             </div>
@@ -111,11 +133,7 @@
                 </div>
             </section><!--/-->
 
-<?php include('modal/registro_ing.php'); ?> 
-<?php include('modal/registro_proveedor_admin.php'); ?> 
-<?php include('modal/login.php'); ?>   
-<?php include('modal/login_proveedor.php'); ?>        
-<?php include('modal/modal_contactanos.php'); ?>        
+      
             <!-- Service Section-->
 
             <section id="service" class="sections">
@@ -135,7 +153,7 @@
                                 <h4 class="text-white">Tus Obras</h4>
                                 <p class="text-white">
                                     Podras conocer toda la informacion de los empleados
-                                    generando un reporte sobre ellos para tener un control sobre en las obras
+                                    generando un reporte sobre ellos para tener un control sobre en las obras en las que trabajan.
                                 </p>
                             </div><!--end feature-->
                         </div>
@@ -164,7 +182,7 @@
                                 <i class="fa fa-legal"></i>
                                 <h4 class="text-white">Realiza Pedidos</h4>
                                 <p class="text-white">
-                                    Podras registrar tus pedidos unicamente seleccionando un suministro con su respectivo proveedor
+                                    Podras registrar tus pedidos unicamente seleccionando un suministro con su proveedor
                                 </p>
                             </div><!--end feature-->
                         </div>
@@ -182,14 +200,13 @@
                    
                     <div class="col-sm-6">
                         <div class="additional-links editContent">
-                            Universidad Francisco de Paula Santander<br>
-                            Todos los derechos reservados <br>2017
+                            Todos los derechos reservados 2017
                             <!--<a href="#">Privacy Policy</a> | <a href="#">Terms</a> -->
                         </div>
                     </div>
                      <div class="col-sm-6">
                         <div class="social-btns pull-right">
-                            Ángel Ortiz - 1151461 <br>
+                            Angel Ortiz - 1151461 <br>
                             Andrés Orduz - 1150470 <br>
                             Holman Calderón - 1150514
                             <!--<a href="#"><i class="fa fa-facebook"></i></a>

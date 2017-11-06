@@ -19,8 +19,11 @@ $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
  $nit = $_POST['nitprovee'];
  $telefono = $_POST['telefonopro'];
  $direccion = $_POST['direccionpro'];
+ $correpro = $_POST['correopro'];
+ $password = $_POST['password']; 
+ 
 
- $sql_insert_pro = "INSERT INTO proveedor (id_proveedor,nit,nombre,telefono,direccion) VALUES ('$ID','$nit','$nombre','$telefono','$direccion')";
+ $sql_insert_pro = "INSERT INTO proveedor (id_proveedor,nit,nombre,telefono,direccion,correo,password) VALUES ('$ID','$nit','$nombre','$telefono','$direccion','$correpro','$password')";
 
  $query_exit= mysqli_query($con,$sql_insert_pro);
 

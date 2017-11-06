@@ -1,6 +1,7 @@
 <?php
 
 $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
+
   if(!$con)
   {
       die("imposible conectarse: ".mysqli_error($con));
@@ -10,27 +11,23 @@ $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
       die("Connect failed: ".mysqli_connect_errno()." : ". mysqli_connect_error());
   }
 
- $max_id = "SELECT MAX(id_proveedor) AS id FROM proveedor";
- $consulta = mysqli_query($con,$max_id);
- $vec = mysqli_fetch_row($consulta);
- $var = (int)$vec[0];
- $ID = $var+1000;
- $nombre = $_POST['nameproveedor'];
- $nit = $_POST['nitprovee'];
- $telefono = $_POST['telefonopro'];
- $direccion = $_POST['direccionpro'];
+  $nombre = $_POST['nombreproveedor'];
+  $direccion = $_POST['direccionproveedor'];
+  $nit = $_POST['nitproveedor'];
+  $telefono = $_POST['telefonoproveedor'];
+  $ID = $_POST['IDproveedor'];
 
- $sql_insert_pro = "INSERT INTO proveedor (id_proveedor,nit,nombre,telefono,direccion) VALUES ('$ID','$nit','$nombre','$telefono','$direccion')";
+  $sql_up_pro = "UPDATE personal SET nombre='$nombre', direccion='$direccion' ,nit='$nit',telefono='$telefono' WHERE id_proveedor='$ID'";
 
- $query_exit= mysqli_query($con,$sql_insert_pro);
+  $query_pro = mysqli_query($con,$sql_up_pro);
 
- if($query_exit)
+  if($query_pro)
       {
-        $msg[]="Se registro Correctamente el proveedor";
+        $msg[]="Se Actualizo Correctamente";
       }
       else
       {
-        $errors[]="No se registro de forma correcta el proveedor" . mysqli_error($con);
+        $errors[]="No se actualizo de forma correcta" . mysqli_error($con);
       }
 
   if (isset($errors))

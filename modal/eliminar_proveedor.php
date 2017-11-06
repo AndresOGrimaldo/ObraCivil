@@ -10,12 +10,12 @@
         <form id="eliminarProveedor" method="post" action="">
           <input type="hidden" id="IDeliminarPro" name="IDeliminarPro">
           <div class="modal-body">
-            <h2 class="text-center text-muted">Estas seguro?</h2>
-	          <p class="lead text-muted text-center" style="display: block;margin:10px">Esta acción eliminará de forma permanente el proveedor. Deseas continuar?</p>
+            <h2 class="text-center text-muted" > <strong>¿Estás seguro?</strong></h2>
+	          <p class="lead text-muted text-center" style="display: block;margin:10px">Esta acción eliminará de forma permanente el proveedor. ¿Desea continuar?</p>
           </div>  
           <div class="modal-footer">
            <button type="button" class="btn btn-lg btn-default" aria-label="Close">Cancelar</button>
-           <button type="submit" class="btn btn-lg btn-primary" name="aceptar">Aceptar</button>
+           <button type="submit" class="btn btn-lg btn-primary btn-danger" name="aceptar">Eliminar</button>
           </div>
       </form>
       </div>

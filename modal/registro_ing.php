@@ -4,12 +4,19 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registrate</h4>
+        <h4 class="modal-title" id="myModalLabel">Registro de Gestor de Obras</h4>
       </div>
       <div id="success"></div>
       <div class="modal-body">
         <form id="registroIng" method="post" action="page_part/registro_ing.php">
           <div class="modal-body">
+          <!-- <div class="form-group">
+              <label for="nombre" class="control-label">Tipo de cuenta:</label>
+              <select class="form-control" name="obra[]">
+                <option value="administrador">Administrador</option>
+                <option value="proveedor">Proveedor</option>
+              </select>
+            </div> -->
               <div class="form-group">
                 <label for="codigo" class="control-label">Nombre:</label>
                 <input type="text" class="form-control" id="nombreing" name="nombreing"  placeholder="Nombre">

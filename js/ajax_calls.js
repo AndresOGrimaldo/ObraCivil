@@ -11,6 +11,14 @@ $(document).ready(function()
 
 $(document).ready(function()
 {
+	$('.ingresar-display').on('click', function()
+	{
+		$('.submenu-hijo3').slideToggle('slow');
+	});
+});
+
+$(document).ready(function()
+{
 	$('.nombre-perfil').on('click', function()
 	{
 		$('.submenu-hijo').slideToggle('slow');
@@ -99,6 +107,41 @@ submitHandler: function(form){
 });
 }
 });
+
+$('#loginProveedor').validate({
+	rules:{
+		usuario :{required:true},
+		pass:{required:true },
+	},
+	messages:
+	{
+		usuario : "Email vacío o inválido",
+		pass: "Contraseña Vacía"
+	},
+submitHandler: function(form){
+	var formulario = $('#loginProveedor');
+	console.log('llegamos a logi');
+ $.ajax({
+	url: formulario.attr('action'),
+	method:'post',
+	data:formulario.serialize(),
+ success : function(data)
+	{
+		var obj = JSON.parse(data);
+    if(obj.login==true)
+    {
+      document.location.href='perfil_proveedor.php';
+    }
+		else
+		{
+			$('#div_error_login2').html(obj.error);
+			$('#usuario').val('')
+			$('#pass').val('')
+		}
+	}
+});
+}
+}); 
 /////////////////////////////////////////////////////////
 //////////// termina Registro y login de un usuario en el sistema
 /////////////////////////////////////////////////////////
@@ -305,13 +348,13 @@ submitHandler: function(form){
 $('#deleteProveedor').on('show.bs.modal', function(event){
 
 	var este=$(this);
-  console.log('elimnar');
-  var button=$(event.relatedTarget);
+    console.log('elimnar');
+    var button=$(event.relatedTarget);
 	var id=button.data('id');
 
 	var modal = $('#deleteProveedor');
 
-  modal.find('#IDeliminarPro').val(id);
+    modal.find('#IDeliminarPro').val(id);
 
 });
 
@@ -345,6 +388,50 @@ submitHandler: function(form){
 			$('#nitprovee').val('')
 			$('#telefonopro').val('')
 			$('#direccionpro').val('')
+	 }
+  });
+ }
+});
+
+// Permite registrar un proveedor ADMINISTRATIVO en el sistema
+$('#registrarProveedorAdmin').validate({
+	rules:{
+		nameproveedor :{required:true},
+		nitprovee:{required:true},
+		telefonopro:{required:true },
+		direccionpro:{required:true},
+		correopro:{required:true},
+		password:{required:true},
+		password_re:{required:true, equalTo:"#password"}
+	},
+	messages:
+	{
+		nameproveedor :"Nombre Vacío",
+		nitprovee:"NIT vacío",
+		telefonopro:"Teléfono vacio",
+		direccionpro:"Dirección vacía",
+		correopro:"Correo vacío",
+		password:"Contraseña vacia",
+		password_re:"Contraseñas no coinciden"
+	},
+submitHandler: function(form){
+	var formulario = $('#registrarProveedorAdmin');
+	console.log('llegamos a registrarmee');
+ $.ajax({
+	url: formulario.attr('action'),
+	method:'post',
+	data:formulario.serialize(),
+ success : function(data)
+	 {
+			$('#div_ajax_registro_pro').html(data);
+			$('#nameproveedor').val('')
+			$('#nitprovee').val('')
+			$('#telefonopro').val('')
+			$('#direccionpro').val('')
+			$('#correopro').val('')
+			$('#password').val('')			
+			$('#password_re').val('')
+			
 	 }
   });
  }
@@ -403,6 +490,66 @@ submitHandler: function(form){
  }
 });
 
+//Permite modificar a un empleado del sistema
+$('#modalPersonal').on('show.bs.modal', function(event){
+	
+		var este=$(this);
+	  console.log('proveedor');
+	  var button=$(event.relatedTarget);
+		var id=button.data('id');
+		var nombre = button.data('nombre');
+		var apellido = button.data('apellido');
+		var cedula = button.data('cedula');
+		var fecha_nacimiento = button.data('fecha-nacimiento')
+		var salario = button.data('salario');
+		var correo = button.data('correo');
+		var obra = button.data('obra');
+	
+		console.log(nombre);
+	
+	
+		var modal = $('#modalPersonal')	;
+	
+	    modal.find('#IDEmpleado').val(id);
+		modal.find('#codigoempleado').val(id);
+		modal.find('#nameempleado').val(nombre);
+		modal.find('#apellidoemp').val(apellido);
+		modal.find('#cedulaemp').val(cedula);
+		modal.find('#fechanac').val(fecha_nacimiento);
+		modal.find('#salarioemp').val(salario);
+		modal.find('#emailemp').val(correo);
+				
+	});
+	
+	/* $('#modificarProveedor').validate({
+		rules:{
+			nombreproveedor :{required:true},
+			nitproveedor:{required:true},
+			telefonoproveedor:{required:true },
+			direccionproveedor:{required:true},
+		},
+		messages:
+		{
+			nombreproveedor :"Nombre Vacio",
+			nitproveedor:"NIT vacio",
+			telefonoproveedor:"Telefono vacio",
+			direccionproveedor:"Direccion vacia",
+		},
+	submitHandler: function(form){
+		var formulario = $('#modificarProveedor');
+		console.log('llegamos a modificar');
+	 $.ajax({
+		url: formulario.attr('action'),
+		method:'post',
+		data:formulario.serialize(),
+	 success : function(data)
+		 {
+				$('#div_ajax_update_pro').html(data);
+		 }
+	  });
+	 }
+	}); */
+	
 
 
 // Modal para administrar Obra

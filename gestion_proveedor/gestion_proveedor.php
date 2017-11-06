@@ -14,6 +14,8 @@
         <meta name="description" content="Build your landing page on the fly with wow builder">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="">
+        <link rel="icon" type="image/png" href="/images/favicon.png" sizes="16x16">
+
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
@@ -64,26 +66,30 @@
 
                            <ul class="nav navbar-nav navbar-right">
                             <li><a href="../perfil_ing.php">Inicio</a></li>
+
+                            <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li> 
+
                         <li class="registro-display">
                              <a class=".perfil2"  href="#" style="">Registros!
                              <i class="caret"></i>
                              </a>
+                             
                             <ul class="submenu-hijo2" style="display:none;">
                              <li><a href=""data-toggle="modal" data-target="#registrarobra">Registrar Obra</a></li>
                              <li><a href="" data-toggle="modal" data-target="#registrarProveedorModal">Registrar Proveedor</a></li>
                              <li><a href="" data-toggle="modal" data-target="#registrarEmpleado">Registrar Empleado</a></li>
                             </ul>
-                        </li>
+                        </li>                        
                                 
-                                <li><a href="#contact">Contactanos</a></li>
                             <li class="nombre-perfil">
                              <a class=".perfil"  href="#" style=""><?php echo $_SESSION['nombre']; ?>
                              <i class="caret"></i>
                              </a>
                             <ul class="submenu-hijo" style="display:none;">
-                             <li><a href="#" data-toggle="modal" data-target="">Editar Perfil</a></li>
+                            <li><a href="../gestion/editar_perfil.php" data-toggle="modal" data-target="">Editar Perfil</a></li>
                              <li><a href="../gestion/gestionar_obras.php">Gestionar Obras</a></li>
                              <li><a href="gestion_proveedor.php">Gestionar Proveedor</a></li>
+                             <li><a href="../gestion_empleados/gestion_personal.php">Gestionar Personal</a></li>
                              <li><a href="../desconectar.php">Salir</a></li>
                             </ul>
                         </li>
@@ -99,6 +105,7 @@
             <?php include('../modal/eliminar_proveedor.php'); ?>
             <?php include('../modal/registrar_empleado.php'); ?>
             <?php include('../modal/modal_suministro.php'); ?>
+            <?php include('../modal/modal_contactanos.php'); ?>
             <!--home section-->
 
 

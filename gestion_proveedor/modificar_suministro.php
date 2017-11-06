@@ -1,6 +1,7 @@
 <?php
 
 $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
+
   if(!$con)
   {
       die("imposible conectarse: ".mysqli_error($con));
@@ -10,27 +11,33 @@ $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
       die("Connect failed: ".mysqli_connect_errno()." : ". mysqli_connect_error());
   }
 
- $max_id = "SELECT MAX(id_proveedor) AS id FROM proveedor";
- $consulta = mysqli_query($con,$max_id);
- $vec = mysqli_fetch_row($consulta);
- $var = (int)$vec[0];
- $ID = $var+1000;
- $nombre = $_POST['nameproveedor'];
- $nit = $_POST['nitprovee'];
- $telefono = $_POST['telefonopro'];
- $direccion = $_POST['direccionpro'];
+  $last = "SELECT MAX(id_suministro) AS id_sum FROM suministro";
+  $query_last = mysqli_query($con,$last);
+  $max = mysqli_fetch_row($query_last);
+  $suma= (int)$max[0];
+  $id_last=$suma+1;
 
- $sql_insert_pro = "INSERT INTO proveedor (id_proveedor,nit,nombre,telefono,direccion) VALUES ('$ID','$nit','$nombre','$telefono','$direccion')";
 
- $query_exit= mysqli_query($con,$sql_insert_pro);
+  $ID = $_POST['idPro'];
+  $nombre = $_POST['nombresuministro'];
+  $des = $_POST['descripcionsum'];
+  $precio = $_POST['precio'];
+  $unidad = $_POST['medida'];
 
- if($query_exit)
+
+  $sql_suministro ="INSERT INTO suministro (id_suministro,nombre,descripcion) VALUES ('$id_last','$nombre','$des')";
+  $sql_pro_sum ="INSERT INTO proveedor_x_suministro (id_proveedor,id_suministro,precio_suministro,unidad_medida) VALUES('$ID','$id_last','$precio','$unidad')";
+
+  $query_sum = mysqli_query($con,$sql_suministro);
+  $query_pro_sum =mysqli_query($con,$sql_pro_sum);
+
+  if($query_sum && $query_pro_sum)
       {
-        $msg[]="Se registro Correctamente el proveedor";
+        $msg[]="Se registro Correctamente el Suministro";
       }
       else
       {
-        $errors[]="No se registro de forma correcta el proveedor" . mysqli_error($con);
+        $errors[]="No se registro de forma correcta el Suministro" . mysqli_error($con);
       }
 
   if (isset($errors))

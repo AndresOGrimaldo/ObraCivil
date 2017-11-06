@@ -28,7 +28,7 @@
               </select>
             </div>
               <div class="form-group">
-                <label for="codigo" class="control-label">Cantida:</label>
+                <label for="codigo" class="control-label">Cantidad:</label>
                 <input type="text" class="form-control" id="cantidadped" name="cantidadped"   placeholder="Digite la cantidad">
               </div>
           </div>  

@@ -13,9 +13,8 @@
         <title>Analisis y diseño</title>
         <meta name="description" content="Build your landing page on the fly with wow builder">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
         <link rel="icon" type="image/png" href="/images/favicon.png" sizes="16x16">
-
+        <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
@@ -64,11 +63,8 @@
 
                         <div class="collapse navbar-collapse" id="navbar-collapse">
 
-                            <ul class="nav navbar-nav navbar-right">
-                                   <li><a href="../perfil_ing.php">Inicio</a></li>
-
-                        <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li>
-
+                           <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../perfil_ing.php">Inicio</a></li>
                         <li class="registro-display">
                              <a class=".perfil2"  href="#" style="">Registros!
                              <i class="caret"></i>
@@ -76,19 +72,20 @@
                             <ul class="submenu-hijo2" style="display:none;">
                              <li><a href=""data-toggle="modal" data-target="#registrarobra">Registrar Obra</a></li>
                              <li><a href="" data-toggle="modal" data-target="#registrarProveedorModal">Registrar Proveedor</a></li>
-                             <li><a href="" data-toggle="modal"data-target="#registrarEmpleado">Registrar Empleado</a></li>
+                             <li><a href="" data-toggle="modal" data-target="#registrarEmpleado">Registrar Empleado</a></li>
                             </ul>
                         </li>
-                                 
-                        
-                           <li class="nombre-perfil">
+                                
+                        <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li>
+                            <li class="nombre-perfil">
                              <a class=".perfil"  href="#" style=""><?php echo $_SESSION['nombre']; ?>
                              <i class="caret"></i>
                              </a>
                             <ul class="submenu-hijo" style="display:none;">
-                            <li><a href="/gestion/editar_perfil.php" data-toggle="modal" data-target="">Editar Perfil</a></li>
+                             <li><a href="#" data-toggle="modal" data-target="">Editar Perfil</a></li>
                              <li><a href="../gestion/gestionar_obras.php">Gestionar Obras</a></li>
                              <li><a href="../gestion_proveedor/gestion_proveedor.php">Gestionar Proveedor</a></li>
+                             <li><a href="../gestion_empleados/gestion_personal.php">Gestionar Personal</a></li>
                              <li><a href="../desconectar.php">Salir</a></li>
                             </ul>
                         </li>
@@ -97,14 +94,13 @@
                     </div>  <!--end container -->
                 </nav>
             </header><!--/-->
-
             <?php include('../obras/obras_admin.php'); ?>
-            <?php include('../modal/modificar_obra.php'); ?>
-            <?php include('../modal/registrar_obra.php'); ?>
-            <?php include('../modal/eliminar_obra.php'); ?> 
             <?php include('../modal/registrar_proveedor.php'); ?>
+            <?php include('../modal/registrar_obra.php'); ?>  
+            <?php include('../modal/modificar_proveedor.php'); ?>
+            <?php include('../modal/eliminar_proveedor.php'); ?>
             <?php include('../modal/registrar_empleado.php'); ?>
-            <?php include('../modal/admin_obra.php'); ?>
+            <?php include('../modal/modal_suministro.php'); ?>
             <?php include('../modal/modal_contactanos.php'); ?>
             <!--home section-->
 
@@ -138,33 +134,29 @@
                         
                         <!--  Heading-->
                         <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                            <div class="title text-center"><h1>Gestion de Obras</h1></div>
-                            <div class="subtitle text-center "><h5>Tenemos las mejores obras para el manejo de las mismas</h5></div>
+                            <div class="title text-center"><h1>Editar Perfil</h1></div>
+                            <div class="subtitle text-center "><h5>Aquí podrás editar tu perfil y modificar tus datos personales</h5></div>
                             <div class="separator text-center"></div>
                         </div>
-                        <?php include('obras_gestionar.php'); ?>
+
+
+                
+          <?php include('editar_perfil_sql.php'); ?>   
+
                         
                         <div class="col-sm-6 clearfix">
                             <div class="feature wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
                                 <!--<i class="fa fa-dollar"></i>-->
-                                <h4 class="text-white">Tus obras</h4>
+                               <!--  <h4 class="text-white">Tu perfil</h4>
                                 <p class="text-white">
-                                    Podras conocer toda la informacion de los empleados
-                                    generando un reporte sobre ellos para tener un control sobre en las obras en las que trabajan, podras registrarlos a alguna de tus obras para así llevar un control de ellos
-                                </p>
+                                    Aquí podrás editar tu información personal -->
+                                                                    </p>
                             </div><!--end feature-->
                         </div>
 
-                        <div class="col-sm-6 clearfix">
-                            <div class="feature wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
-                                <!--<i class="fa fa-line-chart"></i>-->
-                                <h4 class="text-white">Tus Reportes</h4>
-                                <p class="text-white">
-                                    Podras obtener el reporte general de la obra, definiendo las informacion necesaria para poder sobre llevarla como sus fechas, su nombre, sus costos entre otros.
-                                </p>
-                            </div><!--end feature-->
-                        </div>
+                       
 
+                     
                         <div class="col-sm-6 clearfix">
                            <!-- <div class="feature margin-top-thirty wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
                                 <i class="fa fa-legal"></i>
@@ -207,8 +199,8 @@
                      <div class="col-sm-6">
                         <div class="social-btns pull-right">
                             Angel Ortiz - 1151461 <br>
-                            Andrés Orduz 1150470
-
+                            Andrés Orduz - 1150470 <br>
+                            Holman Calderón - 1150514
                             <!--<a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-google-plus"></i></a>

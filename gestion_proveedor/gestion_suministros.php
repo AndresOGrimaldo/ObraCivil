@@ -1,10 +1,19 @@
+<?php
+  session_start();
+
+  if(!$_SESSION)
+  {
+    header('location:index.php');
+  }
+?>
+
 <html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Analisis y diseño</title>
+        <title>Gestión de Suministros - Analisis y diseño</title>
         <meta name="description" content="Build your landing page on the fly with wow builder">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
+        <link rel="shortcut icon" type="image/png" href="">
         <link rel="icon" type="image/png" href="/images/favicon.png" sizes="16x16">
 
 
@@ -12,27 +21,26 @@
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:500,400,300" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="../css/normalize.css">
 <!--        <link rel="stylesheet" href="css/plugins.css" />-->
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/nivo-lightbox.css">
-        <link rel="stylesheet" href="css/themes/default/default.css">
-         <link rel="stylesheet" href="css/jquery.countdown.css">
+        <link rel="stylesheet" href="../css/owl.carousel.css">
+        <link rel="stylesheet" href="../css/nivo-lightbox.css">
+        <link rel="stylesheet" href="../css/themes/default/default.css">
+         <link rel="stylesheet" href="../css/jquery.countdown.css">
 
         <!--if active wow.js. active animate.css-->
         <!--<link rel="stylesheet" href="css/animate.min.css">-->
 
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <!--<link rel="stylesheet" href="../css/bootstrap-theme.min.css">-->
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/style.css">
         <!-- Color CSS -->
-        <link rel="stylesheet" href="css/colors/blue.css">
+        <!--<link rel="stylesheet" href="../css/colors/blue.css">-->
 
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-        <link rel="stylesheet" href="css/responsive.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
         </head>
     <body data-spy="scroll" data-target="#main-navbar">
 
@@ -51,48 +59,57 @@
                                 <span class="icon-bar"></span>
                             </button>
 
-                            <a href="index.php" class=""><h3 class="text-white" style="margin-top:20px;">SIGAOC</h3></a>
-                            
+                            <a href="../perfil_ing.php" class=""><h3 class="text-white" style="margin-top:20px;">SIGAOC</h3></a>
                         </div>  <!--end navbar-header -->
 
                         <div class="collapse navbar-collapse" id="navbar-collapse">
 
-                            <ul class="nav navbar-nav navbar-right">
-                                   <li><a href="#home">Inicio</a></li>
-                                <!-- <li><a href="#features" data-toggle="modal" data-target="#myModal">Ingresar</a></li> -->
-                                <li class="ingresar-display">
-                                    <a class=".perfil"  href="#" style="">Ingresar
-                                    <i class="caret"></i>
-                                    </a>
-                                    <ul class="submenu-hijo3" style="display:none;">
-                                    <li><a href=""data-toggle="modal" data-target="#myModal">Gestor de Obras</a></li>
-                                    <li><a href=""data-toggle="modal" data-target="#ModalLoginProveedor">Proveedor</a></li>
-                                    </ul>
-                                </li>
-                                <!-- <li><a href="" data-toggle="modal" data-target="#myModalRegistro">Regístrate</a></li> -->
-                                <li class="registro-display">
-                                    <a class=".perfil2"  href="#" style="">Regístrate
-                                    <i class="caret"></i>
-                                    </a>
-                                    <ul class="submenu-hijo2" style="display:none;">
-                                    <li><a href=""data-toggle="modal" data-target="#myModalRegistro">Gestor de Obras</a></li>
-                                    <li><a href=""data-toggle="modal" data-target="#myModalRegistroProveedorAdmin">Proveedor</a></li>
-                                    </ul>
-                                </li>
+                           <ul class="nav navbar-nav navbar-right">
+                            <li><a href="../perfil_proveedor.php">Inicio</a></li>
+
+                            <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li> 
+
+                            <li class="registro-display">
+                            <a class=".perfil2"  href="#" style="">Registros!
+                            <i class="caret"></i>
+                            </a>
+                            <ul class="submenu-hijo2" style="display:none;">
+                            <li><a href="" data-toggle="modal" data-id="<?php echo $_SESSION['id_proveedor'];?>" data-target="#modalSuministro">Agregar Suministro</a></li>
+                            <!-- <li><a href="" data-toggle="modal" data-target="#registrarProveedorModal">Registrar Proveedor</a></li> -->
+                            <!-- <li><a href="" data-toggle="modal"data-target="#registrarEmpleado">Registrar Empleado</a></li> -->
+                            </ul>
+                            </li>                       
                                 
-                                <li><a href="" data-toggle="modal" data-target="#modalContacto">Contáctanos</a></li>
+                            <li class="nombre-perfil">
+                             <a class=".perfil"  href="#" style=""><?php echo $_SESSION['nombre']; ?>
+                             <i class="caret"></i>
+                             </a>
+                            <ul class="submenu-hijo" style="display:none;">
+                            <!-- <li><a href="../gestion/editar_perfil.php" data-toggle="modal" data-target="">Editar Perfil</a></li>
+                             <li><a href="../gestion/gestionar_obras.php">Gestionar Obras</a></li>
+                             <li><a href="../gestion_proveedor/gestion_proveedor.php">Gestionar Proveedor</a></li>--> 
+                             <li><a href="../desconectar.php">Salir</a></li>
+                            </ul>
+                        </li>
                             </ul>
                         </div>  <!--end collapse -->
                     </div>  <!--end container -->
                 </nav>
             </header><!--/-->
-
-
+            <?php include('../obras/obras_admin.php'); ?>
+            <?php include('../modal/registrar_proveedor.php'); ?>
+            <?php include('../modal/registrar_obra.php'); ?>  
+            <?php include('../modal/modificar_proveedor.php'); ?>
+            <?php include('../modal/eliminar_proveedor.php'); ?>
+            <?php include('../modal/registrar_empleado.php'); ?>
+            <?php include('modificar_personal.php'); ?>            
+            <?php include('../modal/modal_suministro.php'); ?>
+            <?php include('../modal/modal_contactanos.php'); ?>
             <!--home section-->
 
 
             <!-- if you like to use surface. change class="home" to class="surface"-->
-            <section id="home" class="home">
+            <!--<section id="home" class="home">
 
                 <div class="overlay-startup">
 
@@ -100,7 +117,6 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="home-intro-subscribe">
-                                    <!--Header text -->
                                     <h1>Manejo de obras de construccion</h1>
                                     <h3>Registra tus obras para poder tener un control sobre ellas, así no perderas la informacion nunca</h3>
                                 </div>
@@ -109,40 +125,38 @@
                         </div>
                     </div>
                 </div>
-            </section><!--/-->
+            </section>-->
 
-<?php include('modal/registro_ing.php'); ?> 
-<?php include('modal/registro_proveedor_admin.php'); ?> 
-<?php include('modal/login.php'); ?>   
-<?php include('modal/login_proveedor.php'); ?>        
-<?php include('modal/modal_contactanos.php'); ?>        
+      
             <!-- Service Section-->
 
             <section id="service" class="sections">
                 <div class="container">
+                
                     <div class="row">
                         
                         <!--  Heading-->
                         <div class="heading wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                            <div class="title text-center"><h1>Como funcionamos</h1></div>
-                            <div class="subtitle text-center "><h5>Tenemos las mejores obras para el manejo de las mismas</h5></div>
+                            <div class="title text-center"><h1>Gestión de Suministros</h1></div>
+                            <div class="subtitle text-center "><h5>Aquí podrás ver la lista de tus suministros regitrados</h5></div>
                             <div class="separator text-center"></div>
                         </div>
+                        <?php include('listar_suministros.php'); ?>
                         
                         <div class="col-sm-6 clearfix">
                             <div class="feature wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
-                                <i class="fa fa-dollar"></i>
+                                <!--<i class="fa fa-dollar"></i>-->
                                 <h4 class="text-white">Tus Obras</h4>
                                 <p class="text-white">
                                     Podras conocer toda la informacion de los empleados
-                                    generando un reporte sobre ellos para tener un control sobre en las obras
+                                    generando un reporte sobre ellos para tener un control sobre en las obras en las que trabajan, podras registrarlos a alguna de tus obras para así llevar un control de ellos
                                 </p>
                             </div><!--end feature-->
                         </div>
 
                         <div class="col-sm-6 clearfix">
                             <div class="feature wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
-                                <i class="fa fa-line-chart"></i>
+                                <!--<i class="fa fa-line-chart"></i>-->
                                 <h4 class="text-white">Tus Reportes</h4>
                                 <p class="text-white">
                                     Podras obtener el reporte general de la obra, definiendo las informacion necesaria para poder sobre llevarla como sus fechas, su nombre, sus costos entre otros.
@@ -151,28 +165,30 @@
                         </div>
 
                         <div class="col-sm-6 clearfix">
-                            <div class="feature margin-top-thirty wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
+                           <!-- <div class="feature margin-top-thirty wow fadeInLeft animated" data-wow-offset="120" data-wow-duration="1.5s">
                                 <i class="fa fa-legal"></i>
                                 <h4 class="text-white">Registra tu obra</h4>
                                 <p class="text-white">
-                                    Podras Registrar tus obras para tenerlas siempre a la mano.
+                                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labor.
                                 </p>
-                            </div><!--end feature-->
+                            </div>-->
                         </div>
                         <div class="col-sm-6 clearfix">
-                            <div class="feature margin-top-thirty wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
+                          <!--  <div class="feature margin-top-thirty wow fadeInRight animated" data-wow-offset="120" data-wow-duration="1.5s">
                                 <i class="fa fa-legal"></i>
-                                <h4 class="text-white">Realiza Pedidos</h4>
+                                <h4 class="text-white">Genera los reportes</h4>
                                 <p class="text-white">
-                                    Podras registrar tus pedidos unicamente seleccionando un suministro con su respectivo proveedor
+                                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labor.
                                 </p>
                             </div><!--end feature-->
                         </div>
 
                     </div><!--end row-->
+                    
 
                 </div><!--end container-->
             </section><!--/-->
+
 
 
             <!-- FOOTER Section-->
@@ -189,7 +205,7 @@
                     </div>
                      <div class="col-sm-6">
                         <div class="social-btns pull-right">
-                            Ángel Ortiz - 1151461 <br>
+                            Angel Ortiz - 1151461 <br>
                             Andrés Orduz - 1150470 <br>
                             Holman Calderón - 1150514
                             <!--<a href="#"><i class="fa fa-facebook"></i></a>
@@ -207,26 +223,25 @@
 
 
         <!--        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-        <script src="js/vendor/jquery-1.10.2.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/jquery.mb.YTPlayer.min.js"></script>
-        <script src="js/jquery.parallax-1.1.3.js"></script>
-        <script src="js/jquery.localScroll.min.js"></script>
-        <script src="js/jquery.scrollTo.min.js"></script>
-        <script src="js/smoothscroll.js"></script>
-        <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="js/jquery.fitvids.js"></script>
-        <script src="js/jquery.wow.min.js"></script>
-        <script src="js/nivo-lightbox.min.js"></script>
-        <script src="js/jquery-contact.js"></script>
-        <script src="js/jquery.easypiechart.min.js"></script>
-        <script type="text/javascript" src="js/twitterFetcher_min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.countdown.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/jquery.validate.js"></script>
-        <script src="js/ajax_calls.js"></script>
+        <script src="../js/vendor/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <script src="../js/plugins.js"></script>
+        <script src="../js/jquery.mb.YTPlayer.min.js"></script>
+        <script src="../js/jquery.parallax-1.1.3.js"></script>
+        <script src="../js/jquery.localScroll.min.js"></script>
+        <script src="../js/jquery.scrollTo.min.js"></script>
+        <script src="../js/smoothscroll.js"></script>
+        <script src="../js/jquery.ajaxchimp.min.js"></script>
+        <script src="../js/jquery.fitvids.js"></script>
+        <script src="../js/jquery.wow.min.js"></script>
+        <script src="../js/nivo-lightbox.min.js"></script>
+        <script src="../js/jquery-contact.js"></script>
+        <script src="../js/jquery.easypiechart.min.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/jquery.countdown.min.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="../js/jquery.validate.js"></script>
+        <script src="../js/ajax_calls.js"></script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

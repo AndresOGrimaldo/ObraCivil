@@ -11,7 +11,7 @@ $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
       die("Connect failed: ".mysqli_connect_errno()." : ". mysqli_connect_error());
   }
 
-  //Registrar Empleado
+
   $id_personal = $_POST['codigoempleado'];
   $ID_jefe = $_POST['id_admin'];
   $nombre = $_POST['nameempleado'];

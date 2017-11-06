@@ -11,8 +11,7 @@ $con=@mysqli_connect('127.0.0.1', 'admbd', 'obracivil123', 'obra_civil');
   {
       die("Connect failed: ".mysqli_connect_errno()." : ". mysqli_connect_error());
   }
-  
-  //Registrar Obra
+
   $nombre = $_POST['nameobra'];
   $fechaini = $_POST['inicioobra'];
   $fechafin = $_POST['finalobra'];
